@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+</head>
+<body>
+    {% csrf_token %}
+
+    <div class="hatProfile">
+        <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
+    </div>
+    <div class="line">
+        <div class="blockProfile">
+            <div class="avatarProfile"><img src="{% static 'img/avatar1.png' %}"></div>
+            <div class="nickname">slava</div>
+            <div class="idProfile">#1207</div>
+                
+            <div class="buttonsProfile">
+                <button onclick="exitProfile()">Выйти</button>
+                <button>Сменить аватар</button>
+                <button>Сменить пароль</button>
+                <button>Сменить e-mail</button>
+            </div>
+        </div>
+        <div class="menuProfile">
+            <p>Сделай тут норм меню навигации</p>
+        </div>
+
+    </div>
+
+
+    <script>
+        function exitProfile() {
+            var x = new XMLHttpRequest();
+            x.open("GET", "/profile/logout/");
+            x.onload = function() {
+                window.location.href = "/index/"
+            }
+            x.send(null);
+        }
+    </script>
+    <!-- <h1>Ваш ник-нейм: {{name}}<h1>
+    <p>Тут будет информация о вашем профиле</p>
+        <form method="get" action="../auth/logout/">
+        <input class="cancelbut" type="submit" value="Выйти">
+    </form> -->
+
+</body>
+</html>

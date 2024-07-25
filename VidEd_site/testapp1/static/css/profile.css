@@ -1,0 +1,83 @@
+.hatProfile a {
+    color: white;
+    text-decoration: none;
+}
+.hatProfile {
+    box-shadow: 0px 0px 10px black;
+}
+body {
+    background-color: rgb(82, 81, 81);
+}
+
+.avatarProfile {
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.avatarProfile img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.buttonsProfile p {
+    font-size: 25px;
+    font-family: "MyriadProLight";
+    color:white
+}
+.blockProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: rgb(108, 107, 107);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+}
+.nickname {
+    color: white;
+    font-family: "MyriadPro";
+    font-size: 50px;
+}
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px;
+    font-size: 25px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 10px black;
+    background-color: rgb(205, 205, 205);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    transition: background-color 0.3s;
+}
+.buttonsProfile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+.idProfile {
+    color: white;
+    font-family: "MyriadProLight";
+}
+.menuProfile {
+    color: white;
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
