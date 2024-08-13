@@ -7,11 +7,11 @@ function showMenu() {
     hat.classList.toggle("hatBlack")
 }
 function goVidEd() {
-    window.location.href="VidEd.html"
+    window.location.href="/VidEd/"
 }
 function goProg() {
-    window.location.href="Prog.html"
+    window.location.href="/Prog/"
 }
 function goDesign() {
-    window.location.href="Design.html"
+    window.location.href="/Design/"
 }

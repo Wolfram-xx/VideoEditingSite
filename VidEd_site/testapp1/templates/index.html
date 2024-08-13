@@ -11,7 +11,16 @@
     <div class="hat" id="hat">
         
         <div class="logoBox"><img src="{% static 'img/logo1.png' %}"><a href="/index/"><h1 id="title">Crystal Studio</h1></a></div>
-        <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div> 
+        <div class="avatar_menu">
+            {% if username != "" %}
+            <div class="nickname_avatar_hat" onclick="window.location.href='/profile/'">
+                <div class="nickname_hat">#{{username}}</div>
+                <div class="avatar_hat"><img id="avatarImg" src="{% static 'img/avatar1.png' %}"></div>
+            </div>
+            {% endif %}
+            <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
+        </div>
+         
     </div>
     <nav id="menu">
         <p>//   Order   //</p>
@@ -79,7 +88,12 @@
         <div class="creators">designed by WolframX</div>
     </div>
 
-
+    <script>
+        username = '{{username}}'
+        url = "/static/avatars/" + username + ".png"
+        img = document.getElementById("avatarImg")
+        img.src = url
+    </script>
     
 </body>
 </html> 

@@ -1,6 +1,142 @@
-.regCard {
-    width: 30vw;
+#title {
+    font-family: "MyriadPro";
+    font-style: italic;
+    font-size: xx-large;
+    margin: 20px;
+}
+
+body {
+    margin: 0;
+}
+
+/* меню */
+/* стиль для заголовков */
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+.logoBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.hat a {
+    color: black;
+    text-decoration: none;
+    transition: color 1s;
+}
+
+.logoBox img {
+    height: 80px;
+    width: 80px;
+
+}
+
+.menuBut {
+    height: 50px;
+    width: 50px;
+    margin: 15px;
+}
+
+.hat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 0px 15px rgb(59, 59, 59);
+    transition: background-color 1s, box-shadow 1s;
+}
+
+.menuButImg {
+    width: 100%;
     height: 100%;
+    transform: rotate(0);
+    filter: invert(0);
+    transition: transform 1s, filter 1s;
+}
+
+.hatBlack {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: none;
+    transition: background-color 1s, box-shadow 1s;
+
+}
+
+.hatBlack a {
+    color: white;
+    transition: color 1s;
+}
+
+.acivateBut {
+    transform: rotate(-180deg);
+    filter: invert(1);
+    transition: transform 1s, filter 1s;
+}
+
+hr {
+    width: 10%;
+}
+
+nav {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 100%;
+    transition: all 1s;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    font-size: 45px;
+    font-family: "MyriadProLight";
+    margin-bottom: 20px;
+}
+
+.activeMenu {
+
+    left: 0;
+    transition: all 1s;
+}
+
+nav p {
+    white-space: pre;
+    color: white;
+    margin-bottom: 0;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.tagline {
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-family: "Recolors";
+    animation: loadtag 0.5s;
+    position: relative;
+}
+
+/* блок авторизации*/
+.card {
+    width: 23vw;
+    height: 27vw;
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
@@ -10,7 +146,10 @@
     font-size: 30px;
     font-family: "MyriadPro";
     box-shadow: 0px 0px 20px rgb(89, 89, 89);
-    animation: loadimg50 0.5s;
+    animation: loadcard 0.5s;
+    padding: 5vw;
+    position: relative;
+    font-family: "MyriadProLight";
 }
 
 .password-control {
@@ -20,15 +159,15 @@
 	display: inline-block;
 	width: 30px;
 	height: 30px;
-	background: url(../static/img/view.svg) 0 0 no-repeat;
+	background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
 }
 .password-control.view {
-	background: url(../static/img/no-view.svg) 0 0 no-repeat;
+	background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
 }
 
 .button{
     margin-top: 2vh;
-    width: 100%;
+    width: 20vw;
     height: 5vh;
     background-color: white;
     font-size: 25px;
@@ -38,10 +177,33 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    animation: anim_grad_boxshadow 10s infinite;
-    cursor: pointer;
+    animation: anim_grad_boxshadow 10s infinite, loadimg50 0.5s;
+}
+.button:hover{
+    background: linear-gradient(to top right, #f686fc, #8bc3ff);
+    animation: 5s infinite linear, anim_grad_boxshadow 10s infinite, loadimg50 0.5s;
+    transition: all 1s;
 }
 
+.footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+.footer .urls {
+    margin-right: auto;
+    margin-left: 30px;
+}
+
+.footer .creators {
+    margin-left: auto;
+    margin-right: 30px;
+}
 
 @keyframes anim_grad_border {
     from {
@@ -72,15 +234,15 @@
 }
 @keyframes anim_grad_boxshadow {
     from {
-        box-shadow: 5px 5px 5px #067eff;
+        box-shadow: 5px 5px #067eff;
     }
 
     to {
-        box-shadow: 5px 5px 5px #067eff;
+        box-shadow: 5px 5px #067eff;
     }
 
     50% {
-        box-shadow: 5px 5px 5px #f306ff;
+        box-shadow: 5px 5px #f306ff;
     }
 }
 
@@ -172,4 +334,53 @@
     margin: 0;
     margin-top: 8vh;
     font-size: 17px;
+}
+
+@keyframes loadtag {
+    from {
+        right: 100%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+/*  */
+@keyframes loadcard {
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@font-face {
+    font-family: "MyriadPro";
+    src: url("MYRIADPRO-REGULAR.OTF") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "MyriadProLight";
+    src: url("MyriadPro-Light.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Recolors";
+    src: url("RecolorsPersonalUse.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Glitch";
+    src: url("slifted.otf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
 }

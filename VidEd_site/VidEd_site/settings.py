@@ -120,9 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    "C:/Users/ACER/Desktop/VidEd_site_v.1/VidEd_site/testapp1/static",
-]
+STATICFILES_DIRS = [Path.joinpath(BASE_DIR, "testapp1/static/")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

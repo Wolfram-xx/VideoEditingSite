@@ -102,8 +102,11 @@
                             errors.classList.add("errorsActive")
                             errorstext.textContent = "Неверный логин или пароль"
                         }
-                        else if (data.text == "NiceLogin") {
-                            window.location.href= '/profile/'
+                        else if (data.text == "NiceWorkLogin") {
+                            window.location.href= '/worker/'
+                        }
+                        else if (data.text == "NiceClientLogin") {
+                            window.location.href = "/profile/"
                         }
                         
                     },
