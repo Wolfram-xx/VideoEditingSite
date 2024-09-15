@@ -13,6 +13,7 @@ from datetime import *
 from pathlib import Path
 import os
 from shutil import copy2
+from django.core.cache import cache
 
 import settings
 from testapp1.models import *
@@ -111,14 +112,28 @@ def profile_page(request):
     date_reg = request.user.date_joined.strftime("%d.%m.%Y")
 
     ordersSent = Order.objects.filter(creator=request.user) & Order.objects.filter(status="sent")
+    ordersSentArr = []
+    for i in ordersSent:
+        ordersSentArr.append([i.name, i.id])
+    print(ordersSentArr)
     ordersInWork = Order.objects.filter(creator=request.user) & Order.objects.filter(status="inwork")
+    ordersInWorkArr = []
+    for i in ordersInWork:
+        ordersInWorkArr.append([i.name, i.id])
     ordersComplete = Order.objects.filter(creator=request.user) & Order.objects.filter(status="complete")
+    ordersCompleteArr = []
+    for i in ordersComplete:
+        ordersCompleteArr.append([i.name, i.id])
     ordersCanceled = Order.objects.filter(creator=request.user) & Order.objects.filter(status="canceled")
+    ordersCanceledArr = []
+    for i in ordersCanceled:
+        ordersCanceledArr.append([i.name, i.id])
 
     return render(request, 'profile.html', {'username': request.user.get_username(), 'firstname': firstname,
                                             'secondname': secondname, 'email': email, "telegram": telegram_id,
-                                            'datereg': date_reg, 'orderssent': ordersSent, 'ordersinwork': ordersInWork,
-                                            'orderscomplete': ordersComplete, 'orderscanceled': ordersCanceled})
+                                            'datereg': date_reg, 'orderssent': ordersSentArr,
+                                            'ordersinwork': ordersInWorkArr, 'orderscomplete': ordersCompleteArr,
+                                            'orderscanceled': ordersCanceledArr})
 
 
 def is_ajax(requset):
@@ -258,7 +273,9 @@ def signin(request):
 
 
 def neworder(request):
-    if getGroup(request.user) != "Client" or getGroup(request.user) != "Admin":
+    print(getGroup(request.user))
+    if getGroup(request.user) != "Client" and getGroup(request.user) != "Admin":
+
         return HttpResponseRedirect("/incorrectacc/")
     return render(request, "formaplication.html")
 
@@ -430,7 +447,7 @@ def contacts_page(request):
 
 
 def help_page(request):
-    return render(request, "help.html")
+    return render(request, "help.html", {'username': request.user.username})
 
 
 def new_help(request):
@@ -440,7 +457,9 @@ def new_help(request):
         callback = request.POST.get("callback")
         if request.user.username != "":
             prof = getProfile(request.user)
-        new_help = Help(topic=topic, description=description, callback=callback, user=prof)
+            new_help = Help(topic=topic, description=description, callback=callback, user=prof)
+        else:
+            new_help = Help(topic=topic, description=description, callback=callback)
         new_help.save()
         return render(request, "good_help.html")
 
@@ -481,3 +500,14 @@ def change_telegram(request):
             tg_code.maybe_tg_id = telegram_id
             tg_code.save()
             return render(request, 'change_telegram2.html', {'errors': 'no'})
+def admin_page(request):
+    if getGroup(request.user) == "Admin":
+        return render(request, "admin_panel.html")
+    else:
+        return HttpResponseRedirect("/index/")
+def sales_page(request):
+    if getGroup(request.user) == 'Admin':
+        return render(request, 'sales.html')
+
+def order_page(request):
+    return render(request, 'order.html')

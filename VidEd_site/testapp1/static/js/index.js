@@ -15,3 +15,8 @@ function goProg() {
 function goDesign() {
     window.location.href="/Design/"
 }
+function loaded(username) {
+    url = "/static/avatars/" + username + ".png"
+    img = document.getElementById("avatarImg")
+    img.src = url
+}

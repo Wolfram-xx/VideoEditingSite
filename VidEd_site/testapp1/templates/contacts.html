@@ -16,7 +16,7 @@
                 {% if username != "" %}
                 <div class="nickname_avatar_hat" onclick="window.location.href='/profile/'">
                     <div class="nickname_hat">#{{username}}</div>
-                    <div class="avatar_hat"><img id="avatarImg" src="{% static 'img/avatar1.png' %}"></div>
+                    <div class="avatar_hat"><img id="avatarImg" src="{% static 'img/default.png' %}"></div>
                 </div>
                 {% endif %}
                 <div class="menuBut" onclick="showMenu()"><img id="menuBut" class="menuButImg" src="{% static 'img/menu.png' %}"></div>
@@ -62,5 +62,8 @@
             <div class="urls">*Какие-то ссылки*</div>
             <div class="creators">designed by WolframX</div>
         </div>
+        <script>
+        loaded('{{username}}')
+        </script>
     </body>
 </html>

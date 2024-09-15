@@ -51,39 +51,44 @@
         </div>
         <div class="menuProfile">
             <div id="yourorders" class="text">Ваши заказы:</div>
-            <div class="new_order"><div class="new_order_but" onclick="window.location.href='/neworder/'" title="Создать новый заказ"><img src="{% static 'img/plus_1.png' %}"></div></div>
-            {% for i in orderssent %}   
-            <div class="order_item">
+            
+            {% for i, id in orderssent %}   
+            <div class="order_item" onclick="gotoOrder(this)">
                 <div class="order_name">{{i}}</div>
                 <div class="order_status_color_1"></div>
                 <div class="order_status">Ожидает подтверждения</div>
                 <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
             </div>
             {% endfor %}
-            {% for i in ordersinwork %}
-            <div class="order_item">
+            {% for i, id in ordersinwork %}
+            <div class="order_item" onclick="gotoOrder(this)">
                 <div class="order_name">{{i}}</div>
                 <div class="order_status_color_2"></div>
                 <div class="order_status">Принят в работу</div>
                 <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
             </div>
             {% endfor %}
-            {% for i in orderscomplete %}
-            <div class="order_item">
+            {% for i, id in orderscomplete %}
+            <div class="order_item" onclick="gotoOrder(this)">
                 <div class="order_name">{{i}}</div>
                 <div class="order_status_color_3"></div>
                 <div class="order_status">Выполнен</div>
                 <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
             </div>
             {% endfor %}
-            {% for i in orderscanceled %}
-            <div class="order_item">
+            {% for i, id in orderscanceled %}
+            <div class="order_item" onclick="gotoOrder(this)">
                 <div class="order_name">{{i}}</div>
                 <div class="order_status_color_4"></div>
                 <div class="order_status">Отменен</div>
                 <div class="go_order_buttom"><img src="{% static 'img/arrow_6.png' %}"></div>
+                <div class="order_id" style="display: none;">{{id}}</div>
             </div>
             {% endfor %}
+            <div class="new_order"><div class="new_order_but" onclick="window.location.href='/neworder/'" title="Создать новый заказ"><img src="{% static 'img/plus_1.png' %}"></div></div>
         </div>
     </div>
 
@@ -91,10 +96,7 @@
 
 
     <script>
-        username = '{{username}}'
-        url = "/static/avatars/" + username + ".png"
-        img = document.getElementById("avatarImg")
-        img.src = url
+        loaded('{{username}}')
         function findindex (element, array) {
             for (let i = 0; i < array.length; i++) {
                 if (array[i] == element) {
@@ -106,6 +108,11 @@
             text = document.getElementById("yourorders")
             text.textContent = "У вас пока нет заказов"
             text.style.marginTop = "100px"
+        }
+        function gotoOrder(e) {
+            order_item = e.children
+            order_id = order_item[4].textContent
+            window.location.href = '/orders?order_id=' + order_id
         }
         function loadNewAvatar() {
             const file = event.target.files[0]

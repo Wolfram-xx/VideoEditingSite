@@ -104,10 +104,8 @@
 
 
     <script>
-        username = '{{username}}'
-        url = "/static/avatars/" + username + ".png"
-        img = document.getElementById("avatarImg")
-        img.src = url
+        
+        loaded('{{username}}')
         function findindex (element, array) {
             for (let i = 0; i < array.length; i++) {
                 if (array[i] == element) {
